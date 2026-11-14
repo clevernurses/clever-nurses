@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { @apply bg-ivory text-ink font-sans antialiased; overflow-x: clip; }
+  h1, h2, h3, h4 { @apply font-display tracking-tight; }
+  :focus-visible { outline: 3px solid #1F7A6F; outline-offset: 3px; border-radius: 6px; }
+  ::selection { background: #FCF1D2; }
+}
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .eyebrow { @apply font-mono text-xs uppercase tracking-[.14em] text-ink-mute; }
+  .chip { @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold; }
+  .btn { @apply inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[15px] font-semibold transition duration-200 ease-out; }
+  .btn-primary { @apply btn bg-ink text-ivory hover:bg-teal; }
+  .btn-secondary { @apply btn border border-ink/20 bg-paper text-ink hover:border-ink; }
+  .btn-ghost { @apply btn px-3 text-teal hover:bg-teal-tint; }
+  .field { @apply min-h-[44px] w-full rounded-xl border border-line bg-paper px-4 text-[15px] text-ink placeholder:text-ink-mute focus:border-teal; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
+@layer components {
+  .hero-card { @apply relative rounded-3xl bg-paper p-4 shadow-lift ring-1 ring-ink/5 transition duration-300 animate-float hover:z-20 hover:rotate-0 hover:scale-[1.04] sm:absolute sm:p-5; }
+}
+
+/* Artwork protection: no iOS long-press save sheet on infographic images. */
+.protected-art { -webkit-touch-callout: none; -webkit-user-drag: none; }
