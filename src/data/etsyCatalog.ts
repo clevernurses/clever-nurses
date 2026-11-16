@@ -22,6 +22,7 @@ type BundleKey = keyof typeof B;
 
 /** Individual listings verified on the live shop (all 4 pages) on 2026-11-15: [digital, print]. */
 const LISTINGS: Record<string, [string, string]> = {
+  'angina-men-vs-women': ['887055628/signs-of-chest-pain-print-digital', '810580472/signs-of-chest-pain-print-cardiologist'],
   'arteries-vs-veins': ['900978789/arteries-and-veins-print-digital', '808684782/arteries-and-veins-print-cardiologist'],
   'rule-of-nines': ['887039256/rule-of-nines-print-digital-download', '810542952/rule-of-nines-print-dermatologist-gift'],
   'cardiac-tamponade-becks-triad': ['900972705/signs-of-cardiac-tamponade-print-o', '810573236/signs-of-cardiac-tamponade-print-o-becks'],
