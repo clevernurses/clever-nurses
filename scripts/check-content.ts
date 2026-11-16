@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 // Content integrity check: run with `npm run check:content`.
 import { RESOURCES } from '../src/data/resources';
 import { TOPICS, findSubcategory, topicById } from '../src/data/topics';
@@ -17,8 +18,9 @@ for (const r of RESOURCES) {
     [r.etsy.digital?.url, r.etsy.print?.url, r.etsy.collection?.url].filter(Boolean).forEach((u) => {
       if (!/^https:\/\/www\.etsy\.com\/listing\/\d+\/[a-z0-9-]+$/.test(u!)) errors.push(`${r.slug}: bad Etsy URL ${u}`);
     });
-    if (!r.etsy.digital && !r.etsy.print) errors.push(`${r.slug}: etsy entry with no listing`);
+    if (!r.etsy.digital && !r.etsy.print && !r.etsy.collection) errors.push(`${r.slug}: etsy entry with no listing or bundle`);
   }
+  if (r.artwork && !existsSync(`src/art/${r.artwork.file}`)) errors.push(`${r.slug}: missing artwork file ${r.artwork.file}`);
   if (r.status === 'published' && (!r.references.length || !r.reviewedOn)) errors.push(`${r.slug}: published without references/review date`);
 }
 const etsyCount = RESOURCES.filter((r) => r.etsy).length;

@@ -157,7 +157,10 @@ function EtsyPanel({ r }: { r: Resource }) {
   return (
     <div className="rounded-2xl bg-coral-tint/60 p-5 ring-1 ring-coral/20">
       <p className="eyebrow !text-coral-deep">Available on Etsy</p>
-      <h2 className="mt-1 text-xl font-semibold">Get the printable</h2>
+      <h2 className="mt-1 text-xl font-semibold">{e.digital || e.print ? 'Get the printable' : 'Explore the collection'}</h2>
+      {!e.digital && !e.print && e.collection && (
+        <p className="mt-1 text-sm text-ink-soft">This infographic is included in the {e.collection.name} on Etsy.</p>
+      )}
       {e.artworkTitle && e.artworkTitle !== r.title && <p className="mt-1 text-sm text-ink-soft">Artwork title: “{e.artworkTitle}”</p>}
       {e.listingSummary && <p className="mt-2 text-sm text-ink-soft">{e.listingSummary}</p>}
       <div className="mt-4 flex flex-col gap-2">
@@ -173,9 +176,15 @@ function EtsyPanel({ r }: { r: Resource }) {
             <span aria-hidden>↗</span><span className="sr-only">(opens Etsy in a new tab)</span>
           </a>
         )}
-        {e.collection && (
+        {e.collection && (e.digital || e.print) && (
           <a href={e.collection.url} {...ext} className="mt-1 inline-flex items-center gap-1 self-start text-sm font-semibold text-coral-deep underline-offset-4 hover:underline">
             Explore the collection: {e.collection.name} ↗
+          </a>
+        )}
+        {e.collection && !e.digital && !e.print && (
+          <a href={e.collection.url} {...ext} className="flex min-h-[44px] items-center justify-between gap-3 rounded-xl bg-paper px-4 py-2.5 text-sm font-semibold ring-1 ring-line transition hover:ring-ink/40">
+            <span><span className="block">{e.collection.name}</span><span className="block text-xs font-normal text-ink-mute">Paid digital bundle · delivered by Etsy</span></span>
+            <span aria-hidden>↗</span><span className="sr-only">(opens Etsy in a new tab)</span>
           </a>
         )}
       </div>
