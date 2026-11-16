@@ -2,9 +2,8 @@ import type { Accent, Audience, Difficulty, Format, Resource, TopicId } from './
 
 /**
  * Remaining original CleveRNurses infographics (added 2026-11-15).
- * Titles come from the All-in-One bundle contents on Etsy. Individual listing URLs could not be
- * verified from this environment (the shop page only exposes its first page), so each item links
- * to its verified bundle. Add `digital` / `print` listing URLs here once confirmed.
+ * Titles come from the All-in-One bundle contents on Etsy. Digital and print listing URLs were verified
+ * against all four shop pages. Items not in LISTINGS link to their bundle only.
  * Educational text is CleveRNurses web content, pending clinical review.
  */
 
@@ -20,6 +19,52 @@ const B = {
   all: { name: 'All-in-One bundle (56 infographics)', url: L('1419499364', 'all-in-one-medical-bundle-prints-digital') },
 };
 type BundleKey = keyof typeof B;
+
+/** Individual listings verified on the live shop (all 4 pages) on 2026-11-15: [digital, print]. */
+const LISTINGS: Record<string, [string, string]> = {
+  'arteries-vs-veins': ['900978789/arteries-and-veins-print-digital', '808684782/arteries-and-veins-print-cardiologist'],
+  'rule-of-nines': ['887039256/rule-of-nines-print-digital-download', '810542952/rule-of-nines-print-dermatologist-gift'],
+  'cardiac-tamponade-becks-triad': ['900972705/signs-of-cardiac-tamponade-print-o', '810573236/signs-of-cardiac-tamponade-print-o-becks'],
+  'signs-of-a-heart-attack': ['887048940/signs-of-a-heart-attack-print-digital', '810974926/signs-of-a-heart-attack-print'],
+  'nclex-study-plan': ['900969747/nclex-study-guide-plan-print-digital', '824944539/nclex-study-guide-plan-print-nurse'],
+  'signs-of-pneumonia': ['887540644/signs-of-pneumonia-print-pulmonologist', '857634436/signs-of-pneumonia-print-pulmonologist'],
+  'signs-of-asthma': ['901470007/signs-of-asthma-print-digital-download', '808684784/signs-of-asthma-print-pulmonologist-gift'],
+  'signs-of-pulmonary-embolism': ['887547398/signs-of-pulmonary-embolism-print', '857634770/signs-of-pulmonary-embolism-print'],
+  'left-sided-heart-failure': ['887057864/signs-of-left-sided-heart-failure-print', '810551372/signs-of-left-sided-heart-failure-print'],
+  'right-sided-heart-failure': ['900988591/signs-of-right-sided-heart-failure-print', '810564212/signs-of-right-sided-heart-failure-print'],
+  'signs-of-meningitis': ['901412769/signs-of-meningitis-print-digital', '824820223/signs-of-meningitis-print-neurology-gift'],
+  'signs-of-pulmonary-edema': ['900987455/signs-of-pulmonary-edema-print-digital', '811047842/signs-of-pulmonary-edema-print'],
+  'types-of-cardiomyopathy': ['882453860/types-of-cardiomyopathy-print-digital', '824342057/types-of-cardiomyopathy-print'],
+  'signs-of-lupus': ['887027710/signs-of-lupus-digital-download', '810947970/signs-of-lupus-immunologist-gift-doctor'],
+  'signs-of-copd': ['901478257/signs-of-copd-print-digital-download', '857634828/signs-of-copd-print-pulmonologist-gift'],
+  'nclex-morning-routine': ['900959183/morning-routine-for-student-nurses-print', '824798441/morning-routine-for-student-nurses-print'],
+  'signs-of-cataracts': ['893688569/signs-of-cataracts-print-digital', '810494178/signs-of-cataracts-print-optometrist'],
+  'trigeminal-neuralgia': ['901437993/trigeminal-neuralgia-print-digital', '871549773/trigeminal-neuralgia-print-neurology'],
+  'pituitary-oh-a-flat-pig': ['900995967/pituitary-gland-mnemonic-print-digital', '856965294/pituitary-gland-mnemonic-print'],
+  'signs-of-multiple-sclerosis': ['887486778/signs-of-multiple-sclerosis-digital', '824812319/signs-of-multiple-sclerosis-neurology'],
+  'thyroid-gland-hormones': ['900998263/thyroid-gland-function-print-digital', '871548991/thyroid-gland-function-print'],
+  'signs-of-gout': ['887473100/signs-of-gout-print-digital-download', '824360329/signs-of-gout-print-orthopedic-gift'],
+  'causes-of-aki': ['901446263/causes-of-acute-kidney-injury-print', '857634144/causes-of-acute-kidney-injury-print'],
+  'signs-of-osteoporosis': ['887475108/signs-of-osteoporosis-print-digital', '859860896/signs-of-osteoporosis-print-orthopedic'],
+  'osteoporosis-risk-factors': ['887476768/risk-factors-of-osteoporosis-print', '859860928/risk-factors-of-osteoporosis-print'],
+  'three-ps-of-diabetes': ['887070502/signs-of-diabetes-print-digital-download', '824929843/signs-of-diabetes-print-endocrinologist'],
+  'signs-of-glomerulonephritis': ['887532082/signs-of-glomerulonephritis-print', '822581335/signs-of-glomerulonephritis-print'],
+  'signs-of-celiac-disease': ['887071432/signs-of-celiac-disease-print-digital', '824924235/signs-of-celiac-disease-print'],
+  'stairs-with-an-injured-leg': ['887478352/up-and-down-steps-print-digital-download', '810520492/up-and-down-steps-print-orthopedic-gift'],
+  'signs-of-appendicitis': ['887465050/signs-of-appendicitis-print-digital', '857633172/signs-of-appendicitis-print'],
+  'hemodialysis-vs-peritoneal-dialysis': ['887536862/hemodialysis-dialysis-vs-peritoneal', '857634522/hemodialysis-dialysis-vs-peritoneal'],
+  'signs-of-fractures': ['887479764/signs-of-fractures-print-digital', '861260896/signs-of-fractures-print-orthopedic-gift'],
+  'signs-of-esophageal-varices': ['887466508/signs-of-varices-print-digital-download', '811008824/signs-of-varices-print'],
+  'inspiration-vs-expiration': ['887551658/inhale-and-exhale-print-digital-download', '871550665/inspiration-vs-expiration-print'],
+  'signs-of-gerd': ['887468950/signs-of-gerd-print-digital-download', '824902021/signs-of-gerd-print-gastroenterologist'],
+  'early-signs-of-alzheimers': ['887482066/signs-of-alzheimers-disease-print-o', '824871149/signs-of-alzheimers-disease-print-o'],
+  'signs-of-tuberculosis': ['901466785/signs-of-tuberculosis-digital-download', '822581333/signs-of-tuberculosis-print'],
+  'open-vs-closed-angle-glaucoma': ['887037928/signs-of-glaucoma-print-digital-download', '824433067/signs-of-glaucoma-print-optometrist-gift'],
+  'types-of-diabetic-neuropathy': ['887065828/types-of-diabetic-neuropathy-digital', '856768978/types-of-diabetic-neuropathy'],
+  'respiratory-system-anatomy-b': ['901473741/respiratory-system-anatomy-print-b', '871550451/respiratory-system-anatomy-print-b'],
+};
+const url = (idSlug: string) => `https://www.etsy.com/listing/${idSlug}`;
+
 
 interface Entry {
   slug: string;
@@ -771,5 +816,13 @@ export const ETSY_CATALOG: Resource[] = ENTRIES.map((e) => ({
   reviewedOn: null,
   source: 'etsy',
   artwork: { file: `${e.slug}.webp`, alt: `CleveRNurses ${e.artworkTitle} infographic` },
-  etsy: { artworkTitle: e.artworkTitle, collection: B[e.bundle], checkedOn: '2026-11-15' },
+  etsy: {
+    artworkTitle: e.artworkTitle,
+    collection: B[e.bundle],
+    ...(LISTINGS[e.slug] && {
+      digital: { url: url(LISTINGS[e.slug][0]), price: '$4.99' },
+      print: { url: url(LISTINGS[e.slug][1]), price: e.slug === 'nclex-study-plan' ? 'from $45.99' : 'from $49.99' },
+    }),
+    checkedOn: '2026-11-15',
+  },
 }));
