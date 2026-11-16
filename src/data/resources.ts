@@ -1,5 +1,6 @@
 import type { Resource } from './types';
 import { ETSY_RESOURCES } from './etsyResources';
+import { ETSY_CATALOG } from './etsyCatalog';
 
 /**
  * Sample library. All items are in development: none has completed clinical review,
@@ -303,7 +304,7 @@ const WEB_RESOURCES: Resource[] = [
 ];
 
 /** Everything in the library. Etsy-backed items are kept in their own file. */
-export const RESOURCES: Resource[] = [...WEB_RESOURCES, ...ETSY_RESOURCES];
+export const RESOURCES: Resource[] = [...WEB_RESOURCES, ...ETSY_RESOURCES, ...ETSY_CATALOG];
 
 export const resourceBySlug = (slug: string) => RESOURCES.find((r) => r.slug === slug);
 

@@ -200,6 +200,7 @@ export const ETSY_RESOURCES: Resource[] = [
       artworkTitle: 'Seizure Classification',
       listingSummary: 'Describes a seizure as an uncontrolled electrical discharge of brain neurons and lists four types: focal onset, generalized onset, unknown onset and unclassified.',
       digital: { url: L('887505702', 'seizure-classification-print-digital'), price: '$4.99' },
+      print: { url: L('871549375', 'seizure-classification-print-neurology'), price: 'from $49.99' },
       collection: BUNDLES.neuro,
     }),
   },
